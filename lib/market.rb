@@ -27,4 +27,21 @@ class Market
     end
     new_list.flatten.uniq.sort
   end
+
+  def total_inventory
+    new_map = @vendors.map do |vendor|
+      vendor.inventory
+    end
+    new_hash = Hash.new(0)
+    new_map.map do |stock|
+      stock.each do |key, value|
+        if new_hash.keys.include?(key)
+          new_hash[key] += value
+        else
+          new_hash[key] = value
+        end
+      end
+    end
+    new_hash
+  end
 end
