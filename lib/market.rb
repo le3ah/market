@@ -17,7 +17,14 @@ class Market
 
   def vendors_that_sell(food)
     @vendors.find_all do |vendor|
-    vendor.inventory.has_key?(food)
-    end 
+      vendor.inventory.has_key?(food)
+    end
+  end
+
+  def sorted_item_list
+    new_list = @vendors.map do |vendor|
+      vendor.inventory.keys
+    end
+    new_list.flatten.uniq.sort
   end
 end
